@@ -1,6 +1,6 @@
 import React from "react";
 import { useCookies } from "react-cookie";
-import { useSelector, useDispatch } from "react-redux/es/exports";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { signOut } from "../authSlice";
 import "./header.css";
@@ -15,6 +15,9 @@ export const Header = () => {
     removeCookie("token");
     history.push("/signin");
   };
+  // 一旦無理やり使う
+  console.log(cookies)
+  console.log(typeof setCookie)
 
   return (
     <header className="header">

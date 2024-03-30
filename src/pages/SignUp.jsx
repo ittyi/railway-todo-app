@@ -17,6 +17,10 @@ export const SignUp = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessge] = useState();
   const [cookies, setCookie, removeCookie] = useCookies();
+
+  // 一旦無理やり使う
+  console.log(cookies)
+  console.log(typeof removeCookie)
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handleNameChange = (e) => setName(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
