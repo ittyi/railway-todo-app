@@ -18,8 +18,8 @@ export const SignIn = () => {
   const [cookies, setCookie, removeCookie] = useCookies();
 
   // 一旦無理やり使う
-  console.log(cookies)
-  console.log(typeof removeCookie)
+  console.log(cookies);
+  console.log(typeof removeCookie);
   const handleEmailChange = (e) => setEmail(e.target.value);
   const handlePasswordChange = (e) => setPassword(e.target.value);
   const onSignIn = () => {

@@ -16,8 +16,8 @@ export const Header = () => {
     history.push("/signin");
   };
   // 一旦無理やり使う
-  console.log(cookies)
-  console.log(typeof setCookie)
+  console.log(cookies);
+  console.log(typeof setCookie);
 
   return (
     <header className="header">
