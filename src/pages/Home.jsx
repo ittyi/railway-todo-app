@@ -67,7 +67,7 @@ export const Home = () => {
 
   const handleSubmit = (e) => {
     if (e.key === 'Enter') {
-      handleSelectList(e.target.getAttribute("name"))
+      handleSelectList(e.target.getAttribute("taskName"))
     }
   }
   
@@ -92,9 +92,6 @@ export const Home = () => {
           </div>
           <ul className="list-tab" role="tablist">
             {lists.map((list, key) => {
-              const element = document.activeElement;
-              console.log("element: ", element)
-
               const isActive = list.id === selectListId;
               if (isActive) {
                 return (
@@ -102,7 +99,7 @@ export const Home = () => {
                     <li
                       key={key}
                       className={`list-tab-item active ${list.id}`}
-                      name={list.id}
+                      taskName={list.id}
                       onClick={() => handleSelectList(list.id)}
                       role="tab"
                       aria-selected="true"
@@ -119,7 +116,7 @@ export const Home = () => {
                 <li
                   key={key}
                   className={`list-tab-item`}
-                  name={list.id}
+                  taskName={list.id}
                   onClick={() => handleSelectList(list.id)}
                   role="tab"
                   aria-selected="false"
