@@ -6,6 +6,14 @@
 
   form {
     @include mixin.common-signin-and-up-form;
+    > input {
+      @include mixin.tablet {
+        width: 600px;
+        padding: 1em 0.5em;
+        line-height: 3;
+        font-size: 150%;
+      }
+    }
   }
 
   button {
