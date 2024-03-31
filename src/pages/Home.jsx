@@ -13,9 +13,6 @@ export const Home = () => {
   const [tasks, setTasks] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
 
-  // 
-  // const [index, setIndex] = useState(0);
-
   const [cookies] = useCookies();
   const handleIsDoneDisplayChange = (e) => setIsDoneDisplay(e.target.value);
   useEffect(() => {
@@ -67,6 +64,12 @@ export const Home = () => {
         setErrorMessage(`タスクの取得に失敗しました。${err}`);
       });
   };
+
+  const handleSubmit = (e) => {
+    if (e.key === 'Enter') {
+      handleSelectList(e.target.getAttribute("name"))
+    }
+  }
   
   return (
     <div>
@@ -93,35 +96,35 @@ export const Home = () => {
               console.log("element: ", element)
 
               const isActive = list.id === selectListId;
-              // setIndex(i+1)
-              console.log("key: ", key)
               if (isActive) {
                 return (
                   <>
                     <li
                       key={key}
-                      className={`list-tab-item active`}
+                      className={`list-tab-item active ${list.id}`}
+                      name={list.id}
                       onClick={() => handleSelectList(list.id)}
                       role="tab"
-                      // role="option"
                       aria-selected="true"
-                      tabIndex={key}
+                      tabIndex={1}
+                      onKeyDown={handleSubmit(list.id)}
                     >
                       {list.title}
                     </li>
                   </>
                 );
               }
-
+  
               return (
                 <li
                   key={key}
                   className={`list-tab-item`}
+                  name={list.id}
                   onClick={() => handleSelectList(list.id)}
                   role="tab"
-                  // role="option"
                   aria-selected="false"
-                  tabIndex={key}
+                  tabIndex={1}
+                  onKeyDown={handleSubmit}
                 >
                   {list.title}
                 </li>
