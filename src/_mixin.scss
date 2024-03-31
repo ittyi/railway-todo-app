@@ -10,6 +10,10 @@
 @mixin common-signin-and-up-form {
   margin: 25px 0;
   color: #555555;
+  // text-align: center;
+  @include mobile {
+    text-align: center;
+  }
 }
 
 @mixin common-signin-and-up-btn {
@@ -18,4 +22,19 @@
   width: 100px;
   height: 40px;
   border-radius: 5px;
+}
+
+$tablet: 768px;
+$smartphone: 320px;
+
+@mixin mobile {
+  @media screen and (max-width: $smartphone) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: $tablet) and (min-width: $smartphone) {
+    @content;
+  }
 }

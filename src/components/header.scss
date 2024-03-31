@@ -8,6 +8,13 @@
   @include mixin.white-color;
   display: flex;
   justify-content: space-between;
+
+  @include mixin.tablet {
+    width: 768px;
+  }
+  @include mixin.mobile {
+    width: 500px;
+  }
 }
 
 .sign-out-button {
