@@ -106,7 +106,7 @@ export const NewTask = () => {
           <label>予約時刻を選んでください。</label>
           <br />
           <input 
-            type="time" 
+            type="time"
             id="time" 
             name="予定の時刻" 
             onChange={handleDeadlineTime}
