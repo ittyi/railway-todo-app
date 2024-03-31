@@ -164,6 +164,8 @@ const Tasks = (props) => {
             >
               {task.title}
               <br />
+              {task.limit ? task.limit : "期限なし"}
+              <br />
               {task.done ? "完了" : "未完了"}
             </Link>
           </li>

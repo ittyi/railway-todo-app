@@ -11,17 +11,23 @@ export const NewTask = () => {
   const [lists, setLists] = useState([]);
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
+  const [deadline, setDeadline] = useState("");
+  const [deadlineTime, setDeadlineTime] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [cookies] = useCookies();
   const history = useHistory();
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
+  const handleDeadline = (e) => setDeadline(e.target.value);
+  const handleDeadlineTime = (e) => setDeadlineTime(e.target.value);
   const handleSelectList = (id) => setSelectListId(id);
   const onCreateTask = () => {
+    const date = new Date(deadline + "T" + deadlineTime)
     const data = {
       title: title,
       detail: detail,
       done: false,
+      limit: date.toISOString(),
     };
 
     axios
@@ -89,6 +95,23 @@ export const NewTask = () => {
             onChange={handleDetailChange}
             className="new-task-detail"
           />
+          <br />
+          <label>タスク期限</label>
+          <br />
+          <input 
+            type="date"
+            onChange={handleDeadline}
+          ></input>
+          <br />
+          <label>予約時刻を選んでください。</label>
+          <br />
+          <input 
+            type="time" 
+            id="time" 
+            name="予定の時刻" 
+            onChange={handleDeadlineTime}
+          />
+          <br />
           <br />
           <button
             type="button"
