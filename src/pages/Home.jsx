@@ -109,12 +109,6 @@ export const Home = () => {
                     >
                       {list.title}
                     </li>
-                    <script>
-                      let email = document.querySelector('list-tab-item');
-                      email.addEventListener('focus', (e) => {
-                        console.log("test: ", e)
-                      });
-                    </script>
                   </>
                 );
               }
