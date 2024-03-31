@@ -66,11 +66,11 @@ export const Home = () => {
   };
 
   const handleSubmit = (e) => {
-    if (e.key === 'Enter') {
-      handleSelectList(e.target.getAttribute("taskName"))
+    if (e.key === "Enter") {
+      handleSelectList(e.target.getAttribute("taskName"));
     }
-  }
-  
+  };
+
   return (
     <div>
       <Header />
@@ -111,7 +111,7 @@ export const Home = () => {
                   </>
                 );
               }
-  
+
               return (
                 <li
                   key={key}
@@ -183,15 +183,15 @@ const Tasks = (props) => {
   }
 
   const carcRemainingDateAndTime = (timenow, deadline) => {
-    const date = deadline.getDate() - timenow.getDate()
-    const hour = deadline.getHours() - timenow.getHours()
+    const date = deadline.getDate() - timenow.getDate();
+    const hour = deadline.getHours() - timenow.getHours();
 
-    if ((timenow - deadline) < 0 ) {
-      return `${Math.abs(date)} 日 と ${Math.abs(hour)} 時間過ぎています。`
+    if (timenow - deadline < 0) {
+      return `${Math.abs(date)} 日 と ${Math.abs(hour)} 時間過ぎています。`;
     }
 
-    return `${Math.abs(date)} 日 と ${Math.abs(date)} 時間です。`
-  }
+    return `${Math.abs(date)} 日 と ${Math.abs(date)} 時間です。`;
+  };
 
   return (
     <ul>
@@ -208,7 +208,12 @@ const Tasks = (props) => {
               {task.title}
               <br />
               <p>期限日時: {task.limit ? task.limit : "期限なし"}</p>
-              <p>期限まで残り: {task.limit ? carcRemainingDateAndTime(new Date(),  new Date(task.limit)) : "期限なし"}</p>
+              <p>
+                期限まで残り:{" "}
+                {task.limit
+                  ? carcRemainingDateAndTime(new Date(), new Date(task.limit))
+                  : "期限なし"}
+              </p>
               {task.done ? "完了" : "未完了"}
               <br />
             </Link>

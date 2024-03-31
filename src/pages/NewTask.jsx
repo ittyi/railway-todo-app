@@ -22,7 +22,7 @@ export const NewTask = () => {
   const handleDeadlineTime = (e) => setDeadlineTime(e.target.value);
   const handleSelectList = (id) => setSelectListId(id);
   const onCreateTask = () => {
-    const date = new Date(deadline + "T" + deadlineTime)
+    const date = new Date(deadline + "T" + deadlineTime);
     const data = {
       title: title,
       detail: detail,
@@ -98,17 +98,14 @@ export const NewTask = () => {
           <br />
           <label>タスク期限</label>
           <br />
-          <input 
-            type="date"
-            onChange={handleDeadline}
-          ></input>
+          <input type="date" onChange={handleDeadline}></input>
           <br />
           <label>予約時刻を選んでください。</label>
           <br />
-          <input 
+          <input
             type="time"
-            id="time" 
-            name="予定の時刻" 
+            id="time"
+            name="予定の時刻"
             onChange={handleDeadlineTime}
           />
           <br />

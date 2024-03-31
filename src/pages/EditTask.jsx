@@ -23,7 +23,7 @@ export const EditTask = () => {
   const handleIsDoneChange = (e) => setIsDone(e.target.value === "done");
 
   const onUpdateTask = () => {
-    const date = new Date(deadline + "T" + deadlineTime)
+    const date = new Date(deadline + "T" + deadlineTime);
     console.log(isDone);
     const data = {
       title: title,
