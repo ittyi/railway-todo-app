@@ -2,22 +2,16 @@
 @use "../mixin";
 
 .signin {
-  width: 500px;
-  margin: 0 auto;
+  @include mixin.common-signin-and-up;
 
   form {
-    margin: 25px 0;
+    @include mixin.common-signin-and-up-form;
   }
 
   button {
-    background-color: #242f9b;
-    width: 100px;
-    height: 40px;
-    border-radius: 5px;
-    @include mixin.white-color;
+    @include mixin.common-signin-and-up-btn;
   }
 }
-
 
 .email-label, .password-label {
   color: #555555;
