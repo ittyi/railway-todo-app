@@ -12,6 +12,10 @@ export const Home = () => {
   const [selectListId, setSelectListId] = useState();
   const [tasks, setTasks] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
+
+  // 
+  // const [index, setIndex] = useState(0);
+
   const [cookies] = useCookies();
   const handleIsDoneDisplayChange = (e) => setIsDoneDisplay(e.target.value);
   useEffect(() => {
@@ -63,6 +67,7 @@ export const Home = () => {
         setErrorMessage(`タスクの取得に失敗しました。${err}`);
       });
   };
+  
   return (
     <div>
       <Header />
@@ -82,14 +87,47 @@ export const Home = () => {
               </p>
             </div>
           </div>
-          <ul className="list-tab">
+          <ul className="list-tab" role="tablist">
             {lists.map((list, key) => {
+              const element = document.activeElement;
+              console.log("element: ", element)
+
               const isActive = list.id === selectListId;
+              // setIndex(i+1)
+              console.log("key: ", key)
+              if (isActive) {
+                return (
+                  <>
+                    <li
+                      key={key}
+                      className={`list-tab-item active`}
+                      onClick={() => handleSelectList(list.id)}
+                      role="tab"
+                      // role="option"
+                      aria-selected="true"
+                      tabIndex={key}
+                    >
+                      {list.title}
+                    </li>
+                    <script>
+                      let email = document.querySelector('list-tab-item');
+                      email.addEventListener('focus', (e) => {
+                        console.log("test: ", e)
+                      });
+                    </script>
+                  </>
+                );
+              }
+
               return (
                 <li
                   key={key}
-                  className={`list-tab-item ${isActive ? "active" : ""}`}
+                  className={`list-tab-item`}
                   onClick={() => handleSelectList(list.id)}
+                  role="tab"
+                  // role="option"
+                  aria-selected="false"
+                  tabIndex={key}
                 >
                   {list.title}
                 </li>
