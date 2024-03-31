@@ -154,11 +154,11 @@ const Tasks = (props) => {
     const date = deadline.getDate() - timenow.getDate()
     const hour = deadline.getHours() - timenow.getHours()
 
-    if (hour < 0) {
+    if ((timenow - deadline) < 0 ) {
       return `${Math.abs(date)} 日 と ${Math.abs(hour)} 時間過ぎています。`
     }
 
-    return `${date} 日 と ${hour} 時間です。`
+    return `${Math.abs(date)} 日 と ${Math.abs(date)} 時間です。`
   }
 
   return (
@@ -176,9 +176,9 @@ const Tasks = (props) => {
               {task.title}
               <br />
               <p>期限日時: {task.limit ? task.limit : "期限なし"}</p>
-              <p>期限までの残り: {task.limit ? carcRemainingDateAndTime(new Date(),  new Date(task.limit)) : "期限なし"}</p>
-              <br />
+              <p>期限まで残り: {task.limit ? carcRemainingDateAndTime(new Date(),  new Date(task.limit)) : "期限なし"}</p>
               {task.done ? "完了" : "未完了"}
+              <br />
             </Link>
           </li>
         ))}
