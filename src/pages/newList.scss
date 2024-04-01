@@ -2,7 +2,6 @@
 @use "../mixin";
 
 .new-list {
-  width: 1000px;
   margin: 0 auto;
   @include mixin.tablet {
     margin-left: 30px;
@@ -17,7 +16,6 @@
 
   > input {
     @include mixin.tablet {
-      width: 600px;
       padding: 1em 0.5em;
       line-height: 1.5;
       font-size: 130%;
