@@ -98,7 +98,7 @@ export const NewTask = () => {
           <br />
           <label>タスク期限</label>
           <br />
-          <input type="date" onChange={handleDeadline}></input>
+          <input type="datetime-local" onChange={handleDeadline}></input>
           <br />
           <label>予約時刻を選んでください。</label>
           <br />

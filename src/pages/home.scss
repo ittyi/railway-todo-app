@@ -8,9 +8,7 @@
 
 .list-header {
   display: flex;
-  @include mixin.pc {
-    justify-content: space-between;
-  }
+  justify-content: space-between;
 }
 
 .list-menu {
@@ -23,12 +21,28 @@
     margin-right: 10px;
     align-items: center;
   }
+
+  @include mixin.tablet {
+    flex-direction: column;
+  }
+
+  @include mixin.mobile {
+    flex-direction: column;
+  }
 }
 
 .list-tab {
   list-style: none;
   display: flex;
   overflow-x: auto;
+
+  @include mixin.tablet {
+    flex-direction: column;
+  }
+
+  @include mixin.mobile {
+    flex-direction: column;
+  }
 }
 
 .list-tab-item {

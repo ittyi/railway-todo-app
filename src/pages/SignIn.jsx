@@ -38,7 +38,7 @@ export const SignIn = () => {
   if (auth) return <Redirect to="/" />;
 
   return (
-    <div>
+    <>
       <Header />
       <main className="signin">
         <h2>サインイン</h2>
@@ -66,6 +66,6 @@ export const SignIn = () => {
         </form>
         <Link to="/signup">新規作成</Link>
       </main>
-    </div>
+    </>
   );
 };

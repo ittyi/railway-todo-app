@@ -2,24 +2,11 @@
 @use "../mixin";
 
 .edit-task {
-  width: 1000px;
   margin: 0 auto;
-  @include mixin.tablet {
-    margin-left: 30px;
-  }
-  @include mixin.mobile {
-    margin-left: 30px;
-  }
 }
 
 .edit-task-form {
   color: #555555;
-  @include mixin.tablet {
-    margin-left: 30px;
-  }
-  @include mixin.mobile {
-    margin-left: 30px;
-  }
 }
 
 .edit-task-title,
