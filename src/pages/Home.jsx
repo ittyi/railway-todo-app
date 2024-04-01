@@ -176,14 +176,14 @@ const Tasks = (props) => {
   }
 
   const carcRemainingDateAndTime = (timenow, deadline) => {
-    const date = deadline.getDate() - timenow.getDate()
-    const hour = deadline.getHours() - timenow.getHours()
+    const count = deadline.getTime() - timenow.getTime();
+    const countDate = (Math.trunc(count / 24 / 60 / 60 / 1000));
+    const countHours = (Math.trunc(count / 60 / 60 / 1000 % 24));
 
-    if ((timenow - deadline) < 0 ) {
-      return `${Math.abs(date)} 日 と ${Math.abs(hour)} 時間過ぎています。`
+    if (count < 0 ) {
+      return `${Math.abs(countDate)} 日 と ${Math.abs(countHours)} 時間過ぎています。`
     }
-
-    return `${Math.abs(date)} 日 と ${Math.abs(date)} 時間です。`
+    return `${countDate} 日 と ${countHours} 時間です。`
   }
 
   return (
