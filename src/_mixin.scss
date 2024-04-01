@@ -46,3 +46,9 @@ $smartphone: 320px;
     @content;
   }
 }
+
+@mixin pc {
+  @media screen and (min-width: $tablet) {
+    @content;
+  }
+}
