@@ -89,12 +89,7 @@ export const Home = () => {
           </div>
           <ul className="list-tab" role="tablist">
             {lists.map((list, key) => {
-              const element = document.activeElement;
-              console.log("element: ", element)
-
               const isActive = list.id === selectListId;
-              // setIndex(i+1)
-              console.log("key: ", key)
               if (isActive) {
                 return (
                   <>
@@ -103,18 +98,11 @@ export const Home = () => {
                       className={`list-tab-item active`}
                       onClick={() => handleSelectList(list.id)}
                       role="tab"
-                      // role="option"
                       aria-selected="true"
                       tabIndex={key}
                     >
                       {list.title}
                     </li>
-                    <script>
-                      let email = document.querySelector('list-tab-item');
-                      email.addEventListener('focus', (e) => {
-                        console.log("test: ", e)
-                      });
-                    </script>
                   </>
                 );
               }
