@@ -13,22 +13,19 @@ export const EditTask = () => {
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
   const [deadline, setDeadline] = useState("");
-  const [deadlineTime, setDeadlineTime] = useState("");
   const [isDone, setIsDone] = useState();
   const [errorMessage, setErrorMessage] = useState("");
+
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
   const handleDeadline = (e) => setDeadline(e.target.value);
-  const handleDeadlineTime = (e) => setDeadlineTime(e.target.value);
   const handleIsDoneChange = (e) => setIsDone(e.target.value === "done");
 
   const onUpdateTask = () => {
-    const date = new Date(deadline + "T" + deadlineTime);
-    console.log(isDone);
     const data = {
       title: title,
       detail: detail,
-      limit: date.toISOString(),
+      limit: new Date(deadline),
       done: isDone,
     };
 
@@ -75,9 +72,10 @@ export const EditTask = () => {
         setDetail(task.detail);
         setIsDone(task.done);
 
-        const time = task.limit.split("T");
-        setDeadline(time[0]);
-        setDeadlineTime(time[1].slice(0, -1));
+        let t = new Date(task.limit).toLocaleString({ timeZone: 'Asia/Tokyo' }).slice(0, -3)
+        const getDeadline = new Date(t)
+        const str = `${getDeadline.getFullYear()}-${('00' + (getDeadline.getMonth()+1).toString()).slice(-2)}-${('00' + getDeadline.getDate().toString()).slice(-2)}T${('00' + getDeadline.getHours().toString()).slice(-2)}:${('00' + getDeadline.getMinutes().toString()).slice(-2)}`
+        setDeadline(str);
       })
       .catch((err) => {
         setErrorMessage(`タスク情報の取得に失敗しました。${err}`);
@@ -111,17 +109,7 @@ export const EditTask = () => {
           <br />
           <label>タスク期限</label>
           <br />
-          <input type="date" onChange={handleDeadline} value={deadline}></input>
-          <br />
-          <label>予約時刻を選んでください。</label>
-          <br />
-          <input
-            type="time"
-            id="time"
-            name="予定の時刻"
-            onChange={handleDeadlineTime}
-            value={deadlineTime}
-          />
+          <input type="datetime-local" onChange={handleDeadline} value={deadline}></input>
           <br />
           <br />
           <div>
