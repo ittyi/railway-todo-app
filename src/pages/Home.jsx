@@ -113,7 +113,6 @@ export const Home = () => {
                   className={`list-tab-item`}
                   onClick={() => handleSelectList(list.id)}
                   role="tab"
-                  // role="option"
                   aria-selected="false"
                   tabIndex={key}
                 >
@@ -201,7 +200,7 @@ const Tasks = (props) => {
             >
               {task.title}
               <br />
-              <p>期限日時: {task.limit ? task.limit : "期限なし"}</p>
+              <p>期限日時: {task.limit ? new Date(task.limit).toLocaleString({ timeZone: 'Asia/Tokyo' }) : "期限なし"}</p>
               <p>期限まで残り: {task.limit ? carcRemainingDateAndTime(new Date(),  new Date(task.limit)) : "期限なし"}</p>
               {task.done ? "完了" : "未完了"}
               <br />

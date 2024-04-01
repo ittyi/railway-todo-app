@@ -71,7 +71,11 @@ export const EditTask = () => {
         setTitle(task.title);
         setDetail(task.detail);
         setIsDone(task.done);
-        setDeadline(task.limit.slice(0, -1));
+
+        let t = new Date(task.limit).toLocaleString({ timeZone: 'Asia/Tokyo' }).slice(0, -3)
+        const getDeadline = new Date(t)
+        const str = `${getDeadline.getFullYear()}-${('00' + (getDeadline.getMonth()+1).toString()).slice(-2)}-${('00' + getDeadline.getDate().toString()).slice(-2)}T${('00' + getDeadline.getHours().toString()).slice(-2)}:${('00' + getDeadline.getMinutes().toString()).slice(-2)}`
+        setDeadline(str);
       })
       .catch((err) => {
         setErrorMessage(`タスク情報の取得に失敗しました。${err}`);
