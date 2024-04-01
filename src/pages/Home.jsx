@@ -183,15 +183,15 @@ const Tasks = (props) => {
   }
 
   const carcRemainingDateAndTime = (timenow, deadline) => {
-    const date = deadline.getDate() - timenow.getDate();
-    const hour = deadline.getHours() - timenow.getHours();
+    const count = deadline.getTime() - timenow.getTime();
+    const countDate = (Math.trunc(count / 24 / 60 / 60 / 1000));
+    const countHours = (Math.trunc(count / 60 / 60 / 1000 % 24));
 
-    if (timenow - deadline < 0) {
-      return `${Math.abs(date)} 日 と ${Math.abs(hour)} 時間過ぎています。`;
+    if (count < 0 ) {
+      return `${Math.abs(countDate)} 日 と ${Math.abs(countHours)} 時間過ぎています。`
     }
-
-    return `${Math.abs(date)} 日 と ${Math.abs(date)} 時間です。`;
-  };
+    return `${countDate} 日 と ${countHours} 時間です。`
+  }
 
   return (
     <ul>
@@ -207,13 +207,8 @@ const Tasks = (props) => {
             >
               {task.title}
               <br />
-              <p>期限日時: {task.limit ? task.limit : "期限なし"}</p>
-              <p>
-                期限まで残り:{" "}
-                {task.limit
-                  ? carcRemainingDateAndTime(new Date(), new Date(task.limit))
-                  : "期限なし"}
-              </p>
+              <p>期限日時: {task.limit ? new Date(task.limit).toLocaleString({ timeZone: 'Asia/Tokyo' }) : "期限なし"}</p>
+              <p>期限まで残り: {task.limit ? carcRemainingDateAndTime(new Date(),  new Date(task.limit)) : "期限なし"}</p>
               {task.done ? "完了" : "未完了"}
               <br />
             </Link>
