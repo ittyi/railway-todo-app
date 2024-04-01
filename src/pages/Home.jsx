@@ -12,6 +12,10 @@ export const Home = () => {
   const [selectListId, setSelectListId] = useState();
   const [tasks, setTasks] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
+
+  // 
+  // const [index, setIndex] = useState(0);
+
   const [cookies] = useCookies();
   const handleIsDoneDisplayChange = (e) => setIsDoneDisplay(e.target.value);
   useEffect(() => {
@@ -63,6 +67,7 @@ export const Home = () => {
         setErrorMessage(`タスクの取得に失敗しました。${err}`);
       });
   };
+  
   return (
     <div>
       <Header />
@@ -82,14 +87,34 @@ export const Home = () => {
               </p>
             </div>
           </div>
-          <ul className="list-tab">
+          <ul className="list-tab" role="tablist">
             {lists.map((list, key) => {
               const isActive = list.id === selectListId;
+              if (isActive) {
+                return (
+                  <>
+                    <li
+                      key={key}
+                      className={`list-tab-item active`}
+                      onClick={() => handleSelectList(list.id)}
+                      role="tab"
+                      aria-selected="true"
+                      tabIndex={key}
+                    >
+                      {list.title}
+                    </li>
+                  </>
+                );
+              }
+
               return (
                 <li
                   key={key}
-                  className={`list-tab-item ${isActive ? "active" : ""}`}
+                  className={`list-tab-item`}
                   onClick={() => handleSelectList(list.id)}
+                  role="tab"
+                  aria-selected="false"
+                  tabIndex={key}
                 >
                   {list.title}
                 </li>
@@ -150,6 +175,17 @@ const Tasks = (props) => {
     );
   }
 
+  const carcRemainingDateAndTime = (timenow, deadline) => {
+    const count = deadline.getTime() - timenow.getTime();
+    const countDate = (Math.trunc(count / 24 / 60 / 60 / 1000));
+    const countHours = (Math.trunc(count / 60 / 60 / 1000 % 24));
+
+    if (count < 0 ) {
+      return `${Math.abs(countDate)} 日 と ${Math.abs(countHours)} 時間過ぎています。`
+    }
+    return `${countDate} 日 と ${countHours} 時間です。`
+  }
+
   return (
     <ul>
       {tasks
@@ -164,7 +200,10 @@ const Tasks = (props) => {
             >
               {task.title}
               <br />
+              <p>期限日時: {task.limit ? new Date(task.limit).toLocaleString({ timeZone: 'Asia/Tokyo' }) : "期限なし"}</p>
+              <p>期限まで残り: {task.limit ? carcRemainingDateAndTime(new Date(),  new Date(task.limit)) : "期限なし"}</p>
               {task.done ? "完了" : "未完了"}
+              <br />
             </Link>
           </li>
         ))}

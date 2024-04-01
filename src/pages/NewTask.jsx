@@ -11,17 +11,21 @@ export const NewTask = () => {
   const [lists, setLists] = useState([]);
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
+  const [deadline, setDeadline] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [cookies] = useCookies();
   const history = useHistory();
+
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
+  const handleDeadline = (e) => setDeadline(e.target.value);
   const handleSelectList = (id) => setSelectListId(id);
   const onCreateTask = () => {
     const data = {
       title: title,
       detail: detail,
       done: false,
+      limit: new Date(deadline),
     };
 
     axios
@@ -89,6 +93,14 @@ export const NewTask = () => {
             onChange={handleDetailChange}
             className="new-task-detail"
           />
+          <br />
+          <label>タスク期限</label>
+          <br />
+          <input 
+            type="datetime-local"
+            onChange={handleDeadline}
+          ></input>
+          <br />
           <br />
           <button
             type="button"

@@ -12,16 +12,20 @@ export const EditTask = () => {
   const [cookies] = useCookies();
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
+  const [deadline, setDeadline] = useState("");
   const [isDone, setIsDone] = useState();
   const [errorMessage, setErrorMessage] = useState("");
+
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleDetailChange = (e) => setDetail(e.target.value);
+  const handleDeadline = (e) => setDeadline(e.target.value);
   const handleIsDoneChange = (e) => setIsDone(e.target.value === "done");
+
   const onUpdateTask = () => {
-    console.log(isDone);
     const data = {
       title: title,
       detail: detail,
+      limit: new Date(deadline),
       done: isDone,
     };
 
@@ -67,6 +71,11 @@ export const EditTask = () => {
         setTitle(task.title);
         setDetail(task.detail);
         setIsDone(task.done);
+
+        let t = new Date(task.limit).toLocaleString({ timeZone: 'Asia/Tokyo' }).slice(0, -3)
+        const getDeadline = new Date(t)
+        const str = `${getDeadline.getFullYear()}-${('00' + (getDeadline.getMonth()+1).toString()).slice(-2)}-${('00' + getDeadline.getDate().toString()).slice(-2)}T${('00' + getDeadline.getHours().toString()).slice(-2)}:${('00' + getDeadline.getMinutes().toString()).slice(-2)}`
+        setDeadline(str);
       })
       .catch((err) => {
         setErrorMessage(`タスク情報の取得に失敗しました。${err}`);
@@ -97,6 +106,11 @@ export const EditTask = () => {
             className="edit-task-detail"
             value={detail}
           />
+          <br />
+          <label>タスク期限</label>
+          <br />
+          <input type="datetime-local" onChange={handleDeadline} value={deadline}></input>
+          <br />
           <br />
           <div>
             <input
