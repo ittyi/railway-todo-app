@@ -1,0 +1,29 @@
+@charset "utf-8";
+@use "../mixin";
+
+.signin {
+  @include mixin.common-signin-and-up;
+
+  form {
+    @include mixin.common-signin-and-up-form;
+  }
+
+  button {
+    @include mixin.common-signin-and-up-btn;
+  }
+}
+
+.email-label, .password-label {
+  color: #555555;
+}
+
+.email-input, .password-input {
+  width: 100%;
+  font-size: large;
+  height: 30px;
+  margin-bottom: 25px;
+}
+
+.error-message {
+  color: #ff3333;
+}

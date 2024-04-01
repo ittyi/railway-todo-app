@@ -1,33 +1,24 @@
 @charset "utf-8";
+@use "../mixin";
 
-.new-task {
+.new-list {
   width: 1000px;
   margin: 0 auto;
 }
 
-.new-task-form {
+.new-list-form {
   color: #555555;
 }
 
-.new-task-select-list,
-.new-task-title,
-.new-task-detail {
+.new-list-title {
   width: 300px;
   margin-bottom: 25px;
 }
 
-.new-task-detail {
-  height: 200px;
-}
-
-.new-task-button {
+.new-list-button {
   background-color: #242f9b;
-  color: #ffffff;
+  @include mixin.white-color;
   width: 80px;
   height: 40px;
   border-radius: 5px;
-}
-
-.error-message {
-  color: #ff3333;
 }

@@ -1,4 +1,5 @@
 @charset "utf-8";
+@use "../mixin";
 
 .edit-task {
   width: 1000px;
@@ -9,8 +10,7 @@
   color: #555555;
 }
 
-.edit-task-title,
-.edit-task-detail {
+.edit-task-title, .edit-task-detail {
   width: 300px;
   margin-bottom: 25px;
 }
@@ -26,7 +26,7 @@
 
 .edit-task-button {
   background-color: #242f9b;
-  color: #ffffff;
+  @include mixin.white-color;
   width: 80px;
   height: 40px;
   border-radius: 5px;

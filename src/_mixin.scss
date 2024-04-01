@@ -1,0 +1,21 @@
+@mixin white-color {
+  color: #ffffff;
+}
+
+@mixin common-signin-and-up {
+  width: 500px;
+  margin: 0 auto;
+}
+
+@mixin common-signin-and-up-form {
+  margin: 25px 0;
+  color: #555555;
+}
+
+@mixin common-signin-and-up-btn {
+  background-color: #242f9b;
+  color: #ffffff;
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+}
