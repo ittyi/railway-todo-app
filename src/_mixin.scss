@@ -4,12 +4,13 @@
 
 @mixin common-signin-and-up {
   width: 80%;
-  // margin: 0 auto;
   @include tablet {
     width: 60%;
+    margin-left: 30px;
   }
   @include mobile {
     width: 60%;
+    margin-left: 30px;
   }
 }
 
