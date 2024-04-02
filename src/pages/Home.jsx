@@ -131,16 +131,16 @@ export const Home = () => {
           <div className="tasks">
             <div className="tasks-header">
               <h2>タスク一覧</h2>
-              <Link to="/task/new">タスク新規作成</Link>
-            </div>
-            <div className="display-select-wrapper">
-              <select
-                onChange={handleIsDoneDisplayChange}
-                className="display-select"
-              >
-                <option value="todo">未完了</option>
-                <option value="done">完了</option>
-              </select>
+              <Link to="/task/new">タスク新規作成</Link>     
+              <div className="display-select-wrapper">
+                <select
+                  onChange={handleIsDoneDisplayChange}
+                  className="display-select"
+                >
+                  <option value="todo">未完了</option>
+                  <option value="done">完了</option>
+                </select>
+              </div>
             </div>
             <Tasks
               tasks={tasks}

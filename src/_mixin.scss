@@ -3,8 +3,15 @@
 }
 
 @mixin common-signin-and-up {
-  width: 500px;
-  margin: 0 auto;
+  width: 80%;
+  @include tablet {
+    width: 60%;
+    margin-left: 30px;
+  }
+  @include mobile {
+    width: 60%;
+    margin-left: 30px;
+  }
 }
 
 @mixin common-signin-and-up-form {
@@ -18,4 +25,25 @@
   width: 100px;
   height: 40px;
   border-radius: 5px;
+}
+
+$tablet: 768px;
+$smartphone: 320px;
+
+@mixin mobile {
+  @media screen and (max-width: $smartphone) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin pc {
+  @media screen and (min-width: $tablet) {
+    @content;
+  }
 }
