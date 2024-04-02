@@ -13,9 +13,6 @@ export const Home = () => {
   const [tasks, setTasks] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
 
-  // 
-  // const [index, setIndex] = useState(0);
-
   const [cookies] = useCookies();
   const handleIsDoneDisplayChange = (e) => setIsDoneDisplay(e.target.value);
   useEffect(() => {
@@ -67,7 +64,13 @@ export const Home = () => {
         setErrorMessage(`タスクの取得に失敗しました。${err}`);
       });
   };
-  
+
+  const handleSubmit = (e) => {
+    if (e.key === "Enter") {
+      handleSelectList(e.target.getAttribute("taskName"));
+    }
+  };
+
   return (
     <div>
       <Header />
@@ -95,11 +98,13 @@ export const Home = () => {
                   <>
                     <li
                       key={key}
-                      className={`list-tab-item active`}
+                      className={`list-tab-item active ${list.id}`}
+                      taskName={list.id}
                       onClick={() => handleSelectList(list.id)}
                       role="tab"
                       aria-selected="true"
-                      tabIndex={key}
+                      tabIndex={1}
+                      onKeyDown={handleSubmit(list.id)}
                     >
                       {list.title}
                     </li>
@@ -111,10 +116,12 @@ export const Home = () => {
                 <li
                   key={key}
                   className={`list-tab-item`}
+                  taskName={list.id}
                   onClick={() => handleSelectList(list.id)}
                   role="tab"
                   aria-selected="false"
-                  tabIndex={key}
+                  tabIndex={1}
+                  onKeyDown={handleSubmit}
                 >
                   {list.title}
                 </li>
