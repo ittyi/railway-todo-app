@@ -2,8 +2,13 @@
 @use "../mixin";
 
 .new-task {
-  width: 1000px;
   margin: 0 auto;
+  @include mixin.tablet {
+    margin-left: 30px;
+  }
+  @include mixin.mobile {
+    margin-left: 30px;
+  }
 }
 
 .new-task-form {
