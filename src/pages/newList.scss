@@ -2,12 +2,25 @@
 @use "../mixin";
 
 .new-list {
-  width: 1000px;
   margin: 0 auto;
+  @include mixin.tablet {
+    margin-left: 30px;
+  }
+  @include mixin.mobile {
+    margin-left: 30px;
+  }
 }
 
 .new-list-form {
   color: #555555;
+
+  > input {
+    @include mixin.tablet {
+      padding: 1em 0.5em;
+      line-height: 1.5;
+      font-size: 130%;
+    }
+  }
 }
 
 .new-list-title {
